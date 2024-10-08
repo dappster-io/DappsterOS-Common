@@ -1,4 +1,4 @@
-module github.com/IceWhaleTech/CasaOS-Common
+module github.com/dappster-io/DappsterOS-Common
 
 go 1.21
 
