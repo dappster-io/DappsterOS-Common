@@ -13,14 +13,14 @@ import (
 )
 
 const (
-	LegacyCasaOSServiceName = "casaos.service"
-	configKeyUniqueToZero3x = "USBAutoMount"
-	configKeyDBPath         = "DBPath"
+	LegacyDappsterOSServiceName = "casaos.service"
+	configKeyUniqueToZero3x     = "USBAutoMount"
+	configKeyDBPath             = "DBPath"
 )
 
 var (
 	// this value will be updated at init() to actual config file path.
-	LegacyCasaOSConfigFilePath = "/etc/casaos.conf"
+	LegacyDappsterOSConfigFilePath = "/etc/casaos.conf"
 
 	_configFile        *ini.File
 	_casaOSBinFilePath string
@@ -32,7 +32,7 @@ var (
 )
 
 func init() {
-	serviceFilePath := file.FindFirstFile("/etc/systemd", LegacyCasaOSServiceName)
+	serviceFilePath := file.FindFirstFile("/etc/systemd", LegacyDappsterOSServiceName)
 	if serviceFilePath == "" {
 		return
 	}
@@ -70,17 +70,17 @@ func init() {
 	if len(texts) > 2 {
 		for i, text := range texts {
 			if text == "-c" {
-				LegacyCasaOSConfigFilePath = texts[i+1]
+				LegacyDappsterOSConfigFilePath = texts[i+1]
 				break
 			}
 		}
 	}
 
-	if _, err := os.Stat(LegacyCasaOSConfigFilePath); os.IsNotExist(err) {
+	if _, err := os.Stat(LegacyDappsterOSConfigFilePath); os.IsNotExist(err) {
 		return
 	}
 
-	_configFile, _ = ini.Load(LegacyCasaOSConfigFilePath)
+	_configFile, _ = ini.Load(LegacyDappsterOSConfigFilePath)
 }
 
 func DetectLegacyVersion() (int, int, int, error) {
@@ -128,9 +128,9 @@ func DetectVersion() (int, int, int, error) {
 	return major, minor, patch, nil
 }
 
-// Detect minor version of CasaOS. It returns 2 for "0.2.x" or 3 for "0.3.x"
+// Detect minor version of DappsterOS. It returns 2 for "0.2.x" or 3 for "0.3.x"
 //
-// (This is often useful when failing to get version from API because CasaOS is not running.)
+// (This is often useful when failing to get version from API because DappsterOS is not running.)
 func DetectMinorVersion() (int, error) {
 	if _configFile == nil {
 		return -1, ErrLegacyVersionNotFound

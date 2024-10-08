@@ -160,7 +160,7 @@ var (
 
 	// feel free to add your first name here
 	right = []string{
-		// CasaOS contributors
+		// DappsterOS contributors
 		"allen",
 		"andres",
 		"angelina",
