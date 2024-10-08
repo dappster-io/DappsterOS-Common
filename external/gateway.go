@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/model"
-	http2 "github.com/IceWhaleTech/CasaOS-Common/utils/http"
+	"github.com/dappster-io/DappsterOS-Common/model"
+	http2 "github.com/dappster-io/DappsterOS-Common/utils/http"
 )
 
 const (
